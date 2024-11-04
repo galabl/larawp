@@ -50,4 +50,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contributing
 
-Contributions are welcome! Please submit a pull request or open an issue to discuss potential changes or improvements.
+This is just a installer project, to contribude, refer to [LaraWp Framework repository](https://github.com/galabl/larawp-framework).
+
