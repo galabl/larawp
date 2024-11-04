@@ -14,7 +14,7 @@ echo "Building the plugin...\n";
 mkdir($hyphen_name, 0755);
 foreach (
     $iterator = new \RecursiveIteratorIterator(
-        new \RecursiveDirectoryIterator('boilerplate', \RecursiveDirectoryIterator::SKIP_DOTS),
+        new \RecursiveDirectoryIterator('vendor/galabl/larawp-framework', \RecursiveDirectoryIterator::SKIP_DOTS),
         \RecursiveIteratorIterator::SELF_FIRST) as $item
 ) {
     if ($item->isDir()) {
