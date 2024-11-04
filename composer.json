@@ -1,6 +1,6 @@
 {
     "name": "galabl/larawp",
-    "description": "Create plugin",
+    "description": "LaraWP WordPress plugin template",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -22,8 +22,12 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "php create_plugin.php",
-            "composer install"
+            "Galabl\\LaraWpInstaller::postCreateProject"
         ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Galabl\\LaraWp\\": "src/"
+        }
     }
 }
