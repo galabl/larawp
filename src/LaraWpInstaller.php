@@ -6,7 +6,6 @@ class LaraWpInstaller
 {
     public static function postCreateProject()
     {
-        // Get the base directory (current working directory) for the project
         $baseDir = getcwd();
         $hyphenName = basename($baseDir); // The project directory name is the hyphen name
 
@@ -21,7 +20,6 @@ class LaraWpInstaller
         // Define the framework path
         $frameworkPath = "$baseDir/vendor/galabl/larawp-framework";
 
-        // Check if the framework path exists
         if (!is_dir($frameworkPath)) {
             echo "Error: 'vendor/galabl/larawp-framework' not found.\n";
             exit(1);
@@ -53,6 +51,30 @@ class LaraWpInstaller
                 $content = str_replace(['LaraWp', 'lara_wp', 'lara-wp'], [$namespace, $underscoreName, $hyphenName], $content);
                 file_put_contents($file, $content);
             }
+        }
+
+        // Update composer.json with new namespace and package name
+        $composerFilePath = "$baseDir/composer.json";
+        if (file_exists($composerFilePath)) {
+            $composerData = json_decode(file_get_contents($composerFilePath), true);
+
+            // Update package name and namespace
+            $composerData['name'] = "vendor/$hyphenName";
+            if (isset($composerData['autoload']['psr-4'])) {
+                foreach ($composerData['autoload']['psr-4'] as $key => $value) {
+                    if (strpos($key, 'LaraWp\\') === 0) {
+                        $newKey = str_replace('LaraWp', $namespace, $key);
+                        $composerData['autoload']['psr-4'][$newKey] = $value;
+                        unset($composerData['autoload']['psr-4'][$key]);
+                    }
+                }
+            }
+
+            // Save the updated composer.json
+            file_put_contents($composerFilePath, json_encode($composerData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+            echo "Updated composer.json with new namespace and package name.\n";
+        } else {
+            echo "composer.json not found in $baseDir.\n";
         }
 
         echo "Plugin created successfully with hyphen name: $hyphenName\n";
