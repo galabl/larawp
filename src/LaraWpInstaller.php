@@ -48,7 +48,7 @@ class LaraWpInstaller
         foreach ($iterator as $file) {
             if ($file->isFile() && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
                 $content = file_get_contents($file);
-                $content = str_replace(['LaraWp', 'lara_wp', 'lara-wp'], [$namespace, $underscoreName, $hyphenName], $content);
+                $content = str_replace(['LaraWp', 'lara_wp', 'lara-wp', 'LARAWP'], [$namespace, $underscoreName, $hyphenName, strtoupper($namespace)], $content);
                 file_put_contents($file, $content);
             }
         }
