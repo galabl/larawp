@@ -22,7 +22,7 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "Galabl\\LaraWpInstaller::postCreateProject"
+            "Galabl\\LaraWp\\LaraWpInstaller::postCreateProject"
         ]
     },
     "autoload": {
