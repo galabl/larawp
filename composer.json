@@ -13,7 +13,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.1",
-        "galabl/larawp-framework": "^1.0.0"
+        "galabl/larawp-framework": "^1.0.1"
     },
     "config": {
         "optimize-autoloader": true,
